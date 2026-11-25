@@ -1,0 +1,20 @@
+app_name = ("TheKorner")
+print(f"Welcome to {app_name}, your trusted salary calculator")
+name = input("Enter worker/ provider name:")
+print(f"Hello {name}, please continue adding your information below.")
+
+try:
+    hours = float(input("Enter hours worked: "))
+    rate = float(input("Enter contracted hourly rate($): "))
+
+    if hours <= 40:
+        total_pay = hours * rate
+        print (f"{name}, your pay for hours worked is ${total_pay:.2f}")
+    else:
+        regular_pay = 40 * rate
+        overtime_hours = hours - 40
+        overtime_pay = overtime_hours * (rate * 1.5)
+        total_pay = regular_pay + overtime_pay
+        print(f"{name}, your total pay with +{overtime_hours:.2f} hours overtime is ${total_pay:.2f} ")
+except ValueError:
+    print(f"{name}, please enter valid numerical values for hours and rate.")
