@@ -1,20 +1,34 @@
 app_name = ("TheKorner")
-print(f"Welcome to {app_name}, your trusted salary calculator")
+print(f"Welcome to {app_name}, your trusted booking and payment platform!")
 name = input("Enter worker/ provider name:")
 print(f"Hello {name}, please continue adding your information below.")
 
 try:
     hours = float(input("Enter hours worked: "))
-    rate = float(input("Enter contracted hourly rate($): "))
+    rate = float(input("Enter contracted hourly rate(ZAR):"))
 
     if hours <= 40:
         total_pay = hours * rate
-        print (f"{name}, your pay for hours worked is ${total_pay:.2f}")
+        print (f"{name}, your pay for hours worked is R{total_pay:.2f}")
     else:
         regular_pay = 40 * rate
         overtime_hours = hours - 40
         overtime_pay = overtime_hours * (rate * 1.5)
         total_pay = regular_pay + overtime_pay
-        print(f"{name}, your total pay with +{overtime_hours:.2f} hours overtime is ${total_pay:.2f} ")
+        print(f"{name}, your total pay with +{overtime_hours:.2f} hours overtime is R{total_pay:.2f}")
 except ValueError:
     print(f"{name}, please enter valid numerical values for hours and rate.")
+
+#Below is a function to calculate the deposit required for a booking slot based on a quote amount and a deposit percentage.
+
+def calculate_deposit(quote_amount: float, deposit_percentage: float) -> float:
+    """ Calculate the upfront deposit required to lock in a booking slot."""
+    return round(quote_amount * deposit_percentage, 2)
+
+sample_quote = 17300.00 #Example quote amount in ZAR
+deposit_due = calculate_deposit(sample_quote, 0.30) # 30% deposit
+remaining_balance = round(sample_quote - deposit_due, 2)
+
+print(f"Quote Ammount: R{sample_quote:.2f}")
+print(f"Deposit Due Now (30%): R{deposit_due:.2f}")
+print(f"Remaining Balance: R{remaining_balance:.2f}")
